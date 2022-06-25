@@ -1,0 +1,44 @@
+footer {
+  width: 100%;
+  background: $black-bg-cl;
+  .container {
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #b0b0b0;
+    font-family: "pr";
+    height: 55px;
+    padding: 0px;
+    font-size: 14px;
+    position: relative;
+    .backtotop {
+      cursor: pointer;
+      text-transform: uppercase;
+      color: #b0b0b0;
+      height: 100%;
+      @include midflex;
+    }
+    .logo {
+      height: 100%;
+      @include midflex;
+      cursor: pointer;
+      position: absolute;
+      left: 50%;
+      @include transform(translateX(-50%));
+    }
+  }
+  @include xs {
+    .container {
+      flex-direction: column;
+      padding: 20px 0px;
+      height: auto;
+    }
+    .logo {
+      margin: 20px auto;
+      position: initial !important;
+      left: initial !important;
+      @include transform(initial !important);
+    }
+  }
+}

@@ -1,0 +1,231 @@
+header {
+  --heightHeader: 80px;
+  width: 100%;
+  max-width: $container-max-width;
+  height: var(--heightHeader);
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  .container-fluid {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    .logo {
+      @include midflex;
+      height: 100%;
+      cursor: pointer;
+      .hidden {
+        display: none;
+      }
+    }
+    ul {
+      height: 100%;
+      justify-content: space-between;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      li {
+        a {
+          height: 100%;
+          padding: 0 18px;
+          @include midflex;
+          @include text(16px, pb, 22.5px, 0.25px, $text-white-cl, uppercase);
+          @include transition($t);
+          &:hover {
+            @include transition($t);
+            color: $yellow-cl;
+          }
+          &.active {
+            @include transition($t);
+            color: $yellow-cl;
+          }
+        }
+      }
+    }
+    .right {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      .lang {
+        height: 100%;
+        position: relative;
+        @include text(16px, pb, normal, 0.5px, $text-white-cl, uppercase);
+        @include midflex;
+        &__current {
+          @include midflex;
+          height: 100%;
+          cursor: pointer;
+          width: 60px;
+        }
+        i {
+          width: 11px;
+          margin-left: -15px;
+          pointer-events: none;
+        }
+        &__option {
+          @include midflex;
+          flex-direction: column;
+          width: 60px;
+          height: auto;
+          position: absolute;
+          background: $black-cl;
+          top: 70px;
+          opacity: 0;
+          pointer-events: none;
+          @include transition($t);
+          a {
+            color: $white-cl;
+            padding: 10px 0;
+            border-top: 1px solid white;
+            text-align: center;
+            width: 100%;
+          }
+          &.active {
+            opacity: 1;
+            pointer-events: all;
+            @include transition($t);
+          }
+        }
+      }
+      .btnmenu {
+        --widthbtn: 40px;
+        max-width: var(--widthbtn);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-left: 20px;
+        z-index: 300;
+        span {
+          width: var(--widthbtn);
+          height: 2px;
+          background: $yellow-cl;
+          display: none;
+          @include transition($t);
+          &::before,
+          &::after {
+            content: "";
+            position: absolute;
+            width: var(--widthbtn);
+            height: 2px;
+            background: $yellow-cl;
+          }
+          &::before {
+            @include transform(translateY(-10px));
+          }
+          &::after {
+            @include transform(translateY(10px));
+          }
+        }
+        &.open {
+          span {
+            @include transform(translateX(-50px));
+            background: transparent;
+            box-shadow: none;
+            &::before {
+              @include transform(rotate(45deg) translate(35px, -35px));
+            }
+            &::after {
+              @include transform(rotate(-45deg) translate(35px, 35px));
+            }
+          }
+        }
+      }
+    }
+    .nav {
+      --fsNav: 24px;
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      background: $black-cl;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      @include transition($t);
+      @include transform(translateX(-740px));
+      ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        @include mid();
+        li {
+          margin: 0 auto;
+          a {
+            font-size: var(--fsNav);
+            padding: 20px;
+            color: $white-cl;
+            text-align: center;
+            @include transition($t);
+            &:hover {
+              color: #bf903d;
+              @include transition($t);
+            }
+            &.active {
+              @include transition($t);
+              color: #bf903d;
+            }
+          }
+        }
+      }
+      .logo {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: left !important;
+        padding: 15px 15px;
+        background: #31302e;
+      }
+    }
+  }
+  @include sm {
+    .container-fluid {
+      ul {
+        display: none;
+      }
+      .right {
+        .btnmenu {
+          span {
+            display: block;
+          }
+        }
+      }
+      .nav {
+        &.active {
+          display: block;
+          opacity: 1;
+          visibility: visible;
+          @include transform(translateX(0px));
+        }
+      }
+    }
+  }
+  @include xs {
+    --heightHeader: 60px;
+    .container-fluid {
+      .nav {
+        &.active {
+          display: block;
+          opacity: 1;
+          visibility: visible;
+          @include transform(translateX(0px));
+        }
+      }
+    }
+  }
+  &.active {
+    background: #000000a6;
+    @include transition($t);
+  }
+}
