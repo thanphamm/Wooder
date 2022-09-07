@@ -1,0 +1,110 @@
+// css button, title, icon, elements...
+img {
+  max-width: 100%;
+}
+.btnmore {
+  position: relative;
+  @include text(14px, pb, normal, 2px, $black-cl, uppercase);
+  &:before {
+    content: "";
+    width: 35px;
+    height: 2px;
+    background: $yellow-cl;
+    display: block;
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+  }
+  img {
+    @include transform(translateX(0px));
+    @include transition($t);
+    margin-bottom: -6px;
+  }
+  &:hover {
+    opacity: 0.6;
+    @include transition($t);
+    img {
+      @include transform(translateX(10px));
+    }
+  }
+}
+.back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  @include transition($t);
+  @include midflex;
+  border: 2.5px solid $yellow-cl;
+  border-radius: 5px;
+  img {
+    width: 36px;
+  }
+  &:hover {
+    background: #ffcd77;
+  }
+  @include xs {
+    display: none;
+  }
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+.popup-video {
+  --wIframe: 920px;
+  --hIframe: 520px;
+  --whCloseBtn: 35px;
+  --rtCloseBtn: -19px;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 300;
+  &.active {
+    display: block;
+  }
+  .iframe_wrap {
+    background: #000;
+    border: 5px solid #eee;
+    height: 100%;
+    width: 100%;
+    max-width: var(--wIframe);
+    max-height: var(--hIframe);
+    @include mid();
+    position: relative;
+  }
+  .close {
+    position: absolute;
+    right: var(--rtCloseBtn);
+    top: var(--rtCloseBtn);
+    border-radius: 100px;
+    cursor: pointer;
+    width: var(--whCloseBtn);
+    height: var(--whCloseBtn);
+    background-color: white;
+    @include midflex;
+    img {
+      width: 60%;
+    }
+  }
+  @include sm {
+    --wIframe: 700px;
+    --hIframe: 400px;
+    --whCloseBtn: 30px;
+    --rtCloseBtn: -17px;
+  }
+  @include xs {
+    --wIframe: 500px;
+    --hIframe: 350px;
+    --whCloseBtn: 30px;
+    --rtCloseBtn: -15px;
+  }
+}

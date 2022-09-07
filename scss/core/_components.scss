@@ -1,0 +1,102 @@
+.textbox {
+  --pdText: 100px;
+  --pRight: 20px;
+  padding-left: var(--pdText);
+  padding-top: 80px;
+  padding-right: var(--pRight);
+  .title {
+    @include text(
+      $fz-title,
+      $ff-title,
+      normal,
+      $ls-title,
+      $text-black-cl,
+      $tf-title
+    );
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    &:before {
+      content: "";
+      width: 80px;
+      height: 2px;
+      background: #555555;
+      display: inline-block;
+      margin-left: -80px;
+      left: -20px;
+      position: relative;
+    }
+    &.--yellow {
+      color: $yellow-cl;
+    }
+    &.--white {
+      color: $white-cl;
+    }
+  }
+  .des {
+    padding: 10px 0 15px 0px;
+    @include text($fz-des, $ff-des, 26px, $ls-des, $gray-cl, $tf-des);
+    &.--white {
+      color: $white-cl;
+    }
+    &.--black {
+      color: $black-cl;
+    }
+  }
+
+  &.--textright {
+    text-align: right;
+    padding-left: 0;
+    padding-right: var(--pdText);
+    padding-left: var(--pRight);
+    .title {
+      flex-direction: row-reverse;
+      &:before {
+        margin-left: initial;
+        left: initial;
+        margin-right: -80px;
+        right: -20px;
+      }
+    }
+  }
+  &.--textcenter {
+    max-width: 460px;
+    margin: auto;
+    padding-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    text-align: center;
+
+    .title {
+      flex-direction: column-reverse;
+      &:before {
+        width: 40px;
+        left: initial;
+        right: initial;
+        margin-left: auto;
+        margin-right: auto;
+        margin: 10px auto;
+        background: $yellow-cl;
+      }
+    }
+  }
+
+  @include sm {
+    --pdText: 0;
+    --pRight: 20px;
+    padding-left: var(--pdText);
+    padding-top: 20px;
+    padding-right: var(--pRight);
+    padding-bottom: 20px;
+    .title {
+      &:before {
+        display: none;
+      }
+    }
+  }
+  @include xs {
+    .title {
+      font-size: 32px;
+    }
+  }
+}
