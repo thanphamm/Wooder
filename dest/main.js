@@ -24,10 +24,8 @@ document.addEventListener("click", function () {
 });
 
 // ================================= jump menu with active class and smooth scroll =================================
-// JAVASCRIP chưa sửa kịp :')
 
 let menus = document.querySelectorAll("header .menu a");
-// let menusNav = document.querySelectorAll('header .nav .menuNav a')
 let heightHeader = document.querySelector("header").offsetHeight;
 let sections = [];
 
@@ -37,6 +35,7 @@ function activeMenu(a) {
       menu_element.classList.remove("active");
     });
   }
+
   a.forEach(function (element, index) {
     let className = element.getAttribute("href").replace("#", "");
     let section = document.querySelector("." + className);
@@ -60,15 +59,73 @@ function activeMenu(a) {
         positionScroll < section.offsetTop + section.offsetHeight
       ) {
         removeActiveMenu(a);
-        a[index].classList.add("active");
+        a[index].classList.add("active")
       } else {
-        a[index].classList.remove("active");
+        a[index].classList.remove("active")
       }
     });
   });
 }
 activeMenu(menus);
-// activeMenu(menusNav);
+
+// ================================= BTN HAMBUGER MENU =================================
+
+let btnMenu = $("header .btnmenu");
+let nav = $("header .nav");
+function toggleMenuMobile(a){
+  a.click(function () {
+    btnMenu.toggleClass("open");
+    nav.toggleClass("active");
+  })
+}
+
+toggleMenuMobile(btnMenu)
+// ================================= BTN HAMBUGER MENU jump menu with active class =================================
+let menusNav = document.querySelectorAll('header .nav .menuNav a')
+let sectionsMenuMobile = []
+
+function ActiveMenuNav(a) {
+  function removeActiveMenuMobile(a){
+    a.forEach(function (menu_element, menu_index) {
+      menu_element.classList.remove("active");
+    });
+  }
+  a.forEach(function(element, index){
+    let classNameMenuMobile = element.getAttribute("href").replace("#", "")
+    let sectionMenuMobile = document.querySelector("." + classNameMenuMobile);
+    sectionsMenuMobile.push(sectionMenuMobile);
+
+    element.addEventListener('click', function(e){
+      removeActiveMenuMobile(a);
+      element.classList.add('active')
+      e.preventDefault();
+      window.scrollTo({
+        top: sectionMenuMobile.offsetTop - heightHeader + 1,
+        behavior: "smooth",
+      });
+      btnMenu.removeClass("open");
+      nav.removeClass("active");
+    })
+  })
+
+  window.addEventListener("scroll", function () {
+    let positionScroll = window.pageYOffset;
+    sectionsMenuMobile.forEach(function (section, index) {
+      if (
+        positionScroll > section.offsetTop - heightHeader &&
+        positionScroll < section.offsetTop + section.offsetHeight
+      ) {
+        removeActiveMenuMobile(a);
+        a[index].classList.add("active")
+      } else {
+        a[index].classList.remove("active")
+      }
+    });
+  });
+}
+
+ActiveMenuNav(menusNav)
+
 
 // ================================= Slider (FLICKITY) =================================
 
@@ -258,14 +315,6 @@ $(window).on("scroll", function () {
   }
 });
 
-// ================================= BTN HAMBUGER MENU =================================
-
-let btnMenu = $("header .btnmenu");
-btnMenu.click(function () {
-  let nav = $("header .nav");
-  $(this).toggleClass("open");
-  nav.toggleClass("active");
-});
 
 // ================================= TAB NEWS (JQUERY) =================================
 
@@ -585,7 +634,7 @@ console.log(`Bài tập 8:
  */
 setInterval(function dongho() {
   let d = new Date();
-  console.log(`Bài tập 9: E IN TRONG NÀY LUÔN NHA A
+  console.log(`Bài tập 9: THỜI GIAN HIỆN TẠI LÀ: 
     ${d.getHours()} : ${d.getMinutes()} : ${d.getSeconds()}`);
 }, 120000);
 /** 10
