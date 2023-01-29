@@ -182,7 +182,8 @@ $carousel.flickity({
   contain: true,
   wrapAround: true,
   prevNextButtons: false,
-  autoPlay: 2500,
+  autoPlay: 2000,
+  pauseAutoPlayOnHover: false,
   on: {
     ready: function () {
       let dotted = $(".flickity-page-dots");
