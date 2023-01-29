@@ -182,7 +182,7 @@ $carousel.flickity({
   contain: true,
   wrapAround: true,
   prevNextButtons: false,
-  autoPlay: 2000,
+  autoPlay: 2500,
   pauseAutoPlayOnHover: false,
   on: {
     ready: function () {
